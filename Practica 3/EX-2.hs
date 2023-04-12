@@ -7,6 +7,16 @@ import Distribution.Simple.Setup (falseArg)
 {-
     Ej 2
     Aca no voy a notar al menos por el momento la especificacion, solo voy a realizar la implementacion
+
+
+    Correccion de chat-gpt (A implementar):
+    Tus respuestas parecen ser correctas en su mayoría. Sin embargo, te daré algunos comentarios y sugerencias:
+
+    La función "maximo3" podría mejorarse al utilizar la función "max" de Haskell, en lugar de comparar los números de forma manual.
+
+    En la función "mismoIntervalo", en lugar de utilizar expresiones complejas con operadores lógicos, podrías crear una función auxiliar que verifique si un número está en un intervalo específico. De esta forma, el código sería más legible y mantenible.
+
+    En la función "sumaDistintos", no es necesario verificar si los tres números son iguales antes de realizar la suma. Simplemente podrías sumar los tres números y luego restar la suma de los números repetidos (en caso de haberlos).
 -}
 
 

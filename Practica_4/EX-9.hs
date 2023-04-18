@@ -11,6 +11,8 @@ iesimoDigito n i | n == 0 = 1
                  | otherwise = mod (div (modulo n) (10^((cantDigitos n)-i))) 10
 
 
+-- Lo anterior es el ejercicio 10 que me sirve para la implementacion de capicua
+
 esCapicua :: Integer -> Bool
 esCapicua n = contadorCapicua n 1 (cantDigitos n)
 
@@ -18,3 +20,6 @@ contadorCapicua :: Integer -> Integer -> Integer -> Bool
 contadorCapicua n i d | i >= d = True
                       | (iesimoDigito n i) == (iesimoDigito n d) = contadorCapicua n (i+1) (d-1)
                       | otherwise = False
+
+
+            

@@ -10,7 +10,7 @@ combinacionesMenoresOiguales n = sumatoria2 n n n
 
 
 sumatoria1 :: Integer -> Integer -> Integer -> Integer
-sumatoria1 j 1 n = 1
+sumatoria1 j 0 n = 0
 sumatoria1 j i n | i * j <= n = 1 + sumatoria1 j (i-1) n
                  | otherwise = sumatoria1 j (i-1) n
 

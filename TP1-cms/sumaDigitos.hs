@@ -1,3 +1,4 @@
+import Distribution.Simple.Utils (xargs)
 -- No editar esta parte
 main :: IO()
 main = do {
@@ -5,7 +6,12 @@ main = do {
   print(sumaDigitos(x ::(Int)))
   }
 
+-- En el pdf marca qu es Integer, dejo Int como estaba en el documento por default
 sumaDigitos :: Int -> Int
--- Completar la definición de la función
+sumaDigitos x | modulo x < 10 = x
+              | otherwise = mod (modulo x) 10 + sumaDigitos (div (modulo x) 10)
 
--- Pueden agregan las funciones que consideren necesarias
+-- Esto NO es necesario. La especificacion pide para n>= 0, la agregue por gusto.
+modulo :: Int -> Int
+modulo x | x < 0 = -x
+         | otherwise = x

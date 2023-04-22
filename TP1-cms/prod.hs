@@ -11,7 +11,7 @@ prod x = prodAux (2*x)
 
 prodAux :: Integer -> Integer 
 prodAux 1 = 3
-prodAux i = i^2 + 2*i
+prodAux i = i^2 + 2*i * prodAux (i-1)
 
 
 -- Tambien haskell tiene una funcion reservada llamada sum, esta cumpliria la misma funcion que la sumatoria

@@ -6,8 +6,14 @@ main = do {
   }
 
 combinacionesMenoresOiguales :: Integer -> Integer
--- Completar la definición de la función
-
--- Pueden agregan las funciones que consideren necesarias
+combinacionesMenoresOiguales n = sumatoria2 n n n
 
 
+sumatoria1 :: Integer -> Integer -> Integer -> Integer
+sumatoria1 j 1 n = 1
+sumatoria1 j i n | i * j <= n = 1 + sumatoria1 j (i-1) n
+                 | otherwise = sumatoria1 j (i-1) n
+
+sumatoria2 :: Integer -> Integer -> Integer -> Integer 
+sumatoria2 1 i n = sumatoria1 1 i n
+sumatoria2 j i n = sumatoria1 j i n + sumatoria2 (j-1) i n

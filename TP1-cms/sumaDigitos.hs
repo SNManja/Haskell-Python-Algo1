@@ -6,7 +6,7 @@ main = do {
   print(sumaDigitos(x ::(Int)))
   }
 
--- En el pdf marca qu es Integer, dejo Int como estaba en el documento por default
+-- En el pdf marca que es Integer, dejo Int como estaba en el documento por default
 sumaDigitos :: Int -> Int
 sumaDigitos x | modulo x < 10 = x
               | otherwise = mod (modulo x) 10 + sumaDigitos (div (modulo x) 10)

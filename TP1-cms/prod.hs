@@ -6,6 +6,14 @@ main = do {
   }
 
 prod :: Integer -> Integer
--- Completar la definición de la función
+prod x = prodAux (2*x)
 
--- Pueden agregan las funciones que consideren necesarias
+
+prodAux :: Integer -> Integer 
+prodAux 1 = 3
+prodAux i = i^2 + 2*i
+
+
+-- Tambien haskell tiene una funcion reservada llamada sum, esta cumpliria la misma funcion que la sumatoria
+-- Como esta se va fuera del tema de la materia no la utilice para la implementacion
+-- prod = sum [i^2 + 2*i | i <- [1..2*x]]

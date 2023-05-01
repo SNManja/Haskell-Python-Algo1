@@ -1,5 +1,6 @@
 import Data.Time (addGregorianDurationClip)
 import Data.List (genericReplicate)
+import Distribution.Simple.Utils (xargs)
 type Set a = [a]
 
 vacio :: Set Integer
@@ -18,6 +19,42 @@ incluido n (ch:ct) | n == ch = True
 
 
 -- 2. SIN HACER AUN
+
+partes :: Integer -> Set (Set Integer) 
+partes n = sinRepeConjDeConj (sortCU (partesAux n []))
+
+partesAux :: Integer -> Set (Set Integer) -> Set (Set Integer)
+partesAux n [] = partesAux n (listaAN n) 
+partesAux 0 cls = cls 
+partesAux n cls =  partesAux (n-1) (cls ++ agregarATodos n cls)
+
+listaAN :: Integer -> Set (Set Integer)
+listaAN 0 = [[]]
+listaAN n = [[n]] ++ listaAN (n-1) 
+
+sortCU :: Set (Set Integer) -> Set (Set Integer)
+sortCU [] = []
+sortCU (x:xs) = [sort x] ++ (sortCU xs)
+
+sort :: Set Integer -> Set Integer
+sort [] = []
+sort (x:xs) | masChico x xs = [x] ++ sort xs     
+            | otherwise = sort (xs ++ [x])
+
+masChico :: Integer -> Set Integer -> Bool
+masChico n [] = True
+masChico n (x:xs) | n <= x = masChico n xs
+                  | otherwise = False
+ 
+sinRepeConjDeConj :: Set (Set Integer) -> Set (Set Integer) 
+sinRepeConjDeConj [] = []
+sinRepeConjDeConj (x:xs) = if conjIncluido x xs then sinRepeConjDeConj xs else [x] ++ sinRepeConjDeConj xs
+
+conjIncluido :: Set Integer -> Set (Set Integer) -> Bool
+conjIncluido conj [] = False
+conjIncluido conj (x:xs) | conj == x = True
+                         | otherwise = conjIncluido conj xs
+
 
 -- 3.
 productoCartesiano :: Set Integer -> Set Integer -> Set (Integer, Integer)

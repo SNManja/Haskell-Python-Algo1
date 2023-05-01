@@ -26,7 +26,7 @@ partes n = sinRepeConjDeConj (sortCU (partesAux n []))
 partesAux :: Integer -> Set (Set Integer) -> Set (Set Integer)
 partesAux n [] = partesAux n (listaAN n) 
 partesAux 0 cls = cls 
-partesAux n cls =  partesAux (n-1) (cls ++ agregarATodos n cls)
+partesAux n cls = partesAux (n-1) (cls ++ agregarATodos n cls)
 
 listaAN :: Integer -> Set (Set Integer)
 listaAN 0 = [[]]

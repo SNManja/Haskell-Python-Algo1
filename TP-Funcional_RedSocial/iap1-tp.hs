@@ -183,12 +183,49 @@ likeoTodas (ph:pt) u | publicacionLikeada (likesDePublicacion ph) u = likeoTodas
 
 {-
     -- Ej-10 --
+
     la res es true si una secuencia de usuarios US tamano 2 o mayor, empieza con u1, termina con u2, son de la red y cumplem con cadenaDeAmigos (us,red)
 
     cadenaDeAmigos (us:seq[Usuario], red:RedSocial) {
         todo x -> (0 <= x < us.length -1 -> RelacionadosDirecto(us[x],us[x+1],red))
     }
 
+    RelacionadosDirecto (u1: Usuario, u2: Usuario, red: RedSocial){
+        Pertenece ((u1,u2),Relaciones(Red)) U Pertenece ((u2,u1), Relaciones(Red))
+    }
+
+    Como lo puedo pensar?
+    Puedo checkear la lista de amigos de u1 y u2, de ahi ver quienes son amigos de los de esa lista hasta encontrar 
 -}
 existeSecuenciaDeAmigos :: RedSocial -> Usuario -> Usuario -> Bool
-existeSecuenciaDeAmigos = undefined
+existeSecuenciaDeAmigos r u1 u2 =  buscoPor r u1 (amigosDe r u2) [u2] || buscoPor r u2 (amigosDe r u1) [u1]
+
+buscoPor :: RedSocial -> Usuario -> [Usuario] -> [Usuario] -> Bool
+buscoPor r u amigos vistos | listaASinB amigos vistos == [] = False
+                           | pertenece u amigos = True
+                           | otherwise = buscoPorCadaAmigo r u amigos (vistos)
+
+buscoPorCadaAmigo :: RedSocial ->  Usuario -> [Usuario] -> [Usuario] -> Bool
+buscoPorCadaAmigo r u [] vistos = False
+buscoPorCadaAmigo r u (ah:at) vistos = buscoPor r u (amigosDe r ah) (vistos ++ [ah]) || buscoPorCadaAmigo r u at (vistos++[ah])
+
+listaASinB :: [Usuario] -> [Usuario] -> [Usuario]
+listaASInB [] _ = []
+listaASinB _ [] = []
+listaASinB (ah:at) b = if pertenece ah b then listaASinB at b else [ah] ++ listaASinB at b
+
+
+pertenece :: (Eq t) => t -> [t] -> Bool
+pertenece _ [] = False
+pertenece t (x:xs) | x == t = True
+                   | otherwise = pertenece t xs
+
+
+-- Estos son predicados de la definicion del TP no se si van a servir 
+cadenaDeAmigos :: RedSocial -> [Usuario] -> Bool
+cadenaDeAmigos r (uh:ut) | null ut  || null (uh:ut)= True
+                         | relacionadosDirecto r uh (head ut) = cadenaDeAmigos r ut
+                         | otherwise = False
+
+relacionadosDirecto :: RedSocial -> Usuario -> Usuario ->  Bool
+relacionadosDirecto r u1 u2 = pertenece u1 (amigosDe r u2)

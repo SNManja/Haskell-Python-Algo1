@@ -171,6 +171,7 @@ tieneUnSeguidorFiel r u = tieneUnSeguidorFielAux (usuarios r) (publicacionesDe r
 
 -- Aca entraria           todos user -> publis del q analisamos -> true/false
 tieneUnSeguidorFielAux :: [Usuario] -> [Publicacion] -> Bool
+tieneUnSeguidorFielAux _ [] = False -- Esto elimina el true en caso que no tenga publicaciones
 tieneUnSeguidorFielAux [] p = False
 tieneUnSeguidorFielAux (uh:ut) p | likeoTodas p uh = True
                                  | otherwise = tieneUnSeguidorFielAux ut p
@@ -210,9 +211,9 @@ buscoPorCadaAmigo r u [] vistos = False
 buscoPorCadaAmigo r u (ah:at) vistos = buscoPor r u (amigosDe r ah) (vistos ++ [ah]) || buscoPorCadaAmigo r u at (vistos++[ah])
 
 listaASinB :: [Usuario] -> [Usuario] -> [Usuario]
-listaASInB [] _ = []
+listaASinB [] _ = []
 listaASinB _ [] = []
-listaASinB (ah:at) b = if pertenece ah b then listaASinB at b else [ah] ++ listaASinB at b
+listaASinB (ah:at) b = if pertenece ah b then listaASinB at b else ([ah] ++ listaASinB at b)
 
 
 pertenece :: (Eq t) => t -> [t] -> Bool

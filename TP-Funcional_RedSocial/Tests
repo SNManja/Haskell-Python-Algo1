@@ -1,0 +1,18 @@
+Ejemplos para testear: 
+
+
+Lista de usuarios: 
+[(20, "Juan Manuel"),(23, "Pedro Montes"), (30, "Juana Alvarez"), (55, "Silvia Rodriguez"), (70, "Marcos Dominguez")]
+
+Listas de amigos -> Test EX-10 ... De Juan Manuel a Pedro Montes y luego por ej Marcos no se relaciona con nadie
+[((20, "Juan Manuel"), (30, "Juana Alvarez")),((30, "Juana Alvarez"), (55, "Silvia Rodriguez")),((55, "Silvia Rodriguez"),(23, "Pedro Montes"))]
+
+Listas de publicaciones
+[((20, "Juan Manuel"), "Hola mundo",[(30, "Juana Alvarez"),(70 "Marcos Dominguez")])]
+
+todo junto
+
+([(20, "Juan Manuel"),(23, "Pedro Montes"), (30, "Juana Alvarez"), (55, "Silvia Rodriguez"), (70, "Marcos Dominguez")], [((20, "Juan Manuel"), (30, "Juana Alvarez")),((30, "Juana Alvarez"), (55, "Silvia Rodriguez")),((55, "Silvia Rodriguez"),(23, "Pedro Montes"))] ,[((20, "Juan Manuel"), "Hola mundo",[(30, "Juana Alvarez"),(70, "Marcos Dominguez")])])
+
+
+

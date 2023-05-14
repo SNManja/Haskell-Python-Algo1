@@ -14,11 +14,15 @@ tests = test [
     " nombresDeUsuarios Default" ~: (nombresDeUsuarios redA) ~?= ["Solin solito","Juan","Natalia","Pedro","Mariela"],
     " nombresDeUsuarios RedVacia" ~: (nombresDeUsuarios redSinUsuarios) ~?= [],
 
-    -- Los casos que me interesan testear son 2:
-    -- Cuando el usuario no tiene amigos
-    -- Cuando el usuario tiene uno o mas amigos
+    {-
+        los casos que nos interesan son 3: 
+         el caso en el que un usuario tiene mas de un amigo (y de paso probamos que funcione cuando el usuario esta primero en la tupla, y cuando esta segundo)
+        despues probamos el caso borde, que es cuando un usuario tiene un solo amigo
+        y luego probamos cuando un usuario no tiene ningun amigo
+    -}
     " amigosDe Default" ~: (amigosDe redA usuario1) ~?= [usuario2, usuario4],
     " amigosDe RedVacia" ~: (amigosDe redA usuario0) ~?= [],
+    " amigosDe 1amigo" ~: (amigosDe redB usuario1) ~?= [usuario2],
 
     -- Los casos que me interesan son 2:
     -- Cuando el usuario no tiene amigos,
@@ -78,7 +82,12 @@ tests = test [
     -- Cada uno con una cadena de amistades extensa pero no chocan -> False
     -- U1 sin amigos -> False
     -- U2 sin amigos -> False
-    " existeSecuenciaDeAmigos 1" ~: (existeSecuenciaDeAmigos redA usuario1 usuario3) ~?= True
+    " existeSecuenciaDeAmigos DirectamenteAmigos" ~: (existeSecuenciaDeAmigos redC usuarioC_1 usuarioC_3) ~?= True,
+    " existeSecuenciaDeAmigos SonAmigosDeAmigos..." ~: (existeSecuenciaDeAmigos redC usuarioC_1 usuarioC_2) ~?= True,
+    " existeSecuenciaDeAmigos U1 sin amigos" ~: (existeSecuenciaDeAmigos redC usuarioC_5 usuarioC_1) ~?= False,
+    " existeSecuenciaDeAmigos U2 sin amigos" ~: (existeSecuenciaDeAmigos redC usuarioC_1 usuarioC_5) ~?= False,
+    " existeSecuenciaDeAmigos CadenaExtensaNoChocan" ~: (existeSecuenciaDeAmigos redAmixC usuarioC_1 usuario1) ~?= False
+
  ]
 
 expectAny actual expected = elem actual expected ~? ("expected any of: " ++ show expected ++ "\n but got: " ++ show actual)
@@ -127,5 +136,35 @@ usuariosB = [usuario1, usuario2, usuario3, usuario5]
 relacionesB = [relacion1_2, relacion2_3]
 publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1, publicacion3_2, publicacion3_3]
 redB = (usuariosB, relacionesB, publicacionesB)
+
+
+--Esta red esta elaborada con fines de testear el ultimo ejercicio antes de que se haya dado la clase de HUnit. 
+--Por eso esta expresada diferente. Especificamente el caso de la redC nos muestra cuando 
+-- Hay una cadena de amigos de amigos entre -> 20 juan manuel y 23 pedro montes
+-- Son amigos directos -> 20 Juan Manuel y 30 Juana Alvarez
+-- Uno tiene amigos y el otro no -> 20 juan manuel y 70 Marcos Dominguez (siendo marcos el solitario)
+usuarioC_1 = (20, "Juan Manuel")
+usuarioC_2 = (23, "Pedro Montes")
+usuarioC_3 = (30, "Juana Alvarez")
+usuarioC_4 = (55, "Silvia Rodriguez")
+usuarioC_5 = (70, "Marcos Dominguez")
+
+relacionC_1 = ((20, "Juan Manuel"), (30, "Juana Alvarez"))
+relacionC_2 = ((30, "Juana Alvarez"), (55, "Silvia Rodriguez"))
+relacionC_3 = ((55, "Silvia Rodriguez"),(23, "Pedro Montes"))
+
+publicacionC_1 = ((20, "Juan Manuel"), "Hola mundo",[(30, "Juana Alvarez"),(70, "Marcos Dominguez")])
+
+usuariosC = ([usuarioC_1, usuarioC_2, usuarioC_3, usuarioC_4, usuarioC_5])
+relacionesC = [relacionC_1, relacionC_2, relacionC_3]
+publicacionesC = [publicacionC_1]
+
+
+redC = (usuariosC, relacionesC, publicacionesC)
+
+redAmixC = (usuariosA ++ usuariosC, relacionesA ++ relacionesC, publicacionesA ++ publicacionesC)
+
+
+
 
 redSinUsuarios = ([],[],[])

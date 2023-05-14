@@ -1,5 +1,6 @@
-import Text.XHtml (red)
-import qualified GHC.TypeLits as True
+module SolucionHS where
+
+
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: xx
@@ -45,7 +46,7 @@ nombresDeUsuarios :: RedSocial -> [String]
 nombresDeUsuarios r = nombresDeUsuariosAux (usuarios r)
 
 nombresDeUsuariosAux :: [Usuario] -> [String]
-nombresDeUsuarioAux [] = []
+nombresDeUsuariosAux [] = []
 nombresDeUsuariosAux (x:xs) = [nombreDeUsuario x] ++ nombresDeUsuariosAux xs
 
 
@@ -87,7 +88,7 @@ longitudLista (x:xs) = 1 + longitudLista xs
     En un principio mi idea era que usuarioConMasAmigosAux solo tome los usuarios y el max, pero pero requiero la red entera (r) como para poder usar con facilidad las funciones ya desarrolladas
 -}
 usuarioConMasAmigos :: RedSocial -> Usuario
-usuarioConMasAmigos r = usuarioConMasAmigosAux r (usuarios r) ((0, "aaa"),(-1)) 
+usuarioConMasAmigos r = usuarioConMasAmigosAux r (usuarios r) ((-1, "aaa"),(-1)) 
 
 usuarioConMasAmigosAux :: RedSocial -> [Usuario] -> (Usuario, Integer) -> Usuario 
 usuarioConMasAmigosAux r [] max = fst max
@@ -99,7 +100,7 @@ usuarioConMasAmigosAux r (lh:lt) (maxUser,maxCount) | cantidadDeAmigos r lh > ma
     Este ejercicio se resuelve simplemente con el uso de la funcion usuarioConMasAmigos recien desarrollada y viendo al cantidadDeAmigos del mismo, lo podemos comparar con el valor numerico 1000000
 -}
 estaRobertoCarlos :: RedSocial -> Bool
-estaRobertoCarlos r = cantidadDeAmigos r (usuarioConMasAmigos r) > 1000000 
+estaRobertoCarlos r = cantidadDeAmigos r (usuarioConMasAmigos r) >= 10 
 
  
 {-
@@ -204,7 +205,7 @@ existeSecuenciaDeAmigos r u1 u2 =  buscoPor r u1 (amigosDe r u2) [u2] || buscoPo
 buscoPor :: RedSocial -> Usuario -> [Usuario] -> [Usuario] -> Bool
 buscoPor r u amigos vistos | listaASinB amigos vistos == [] = False
                            | pertenece u amigos = True
-                           | otherwise = buscoPorCadaAmigo r u amigos (vistos)
+                           | otherwise = buscoPorCadaAmigo r u (listaASinB amigos vistos) (vistos)
 
 buscoPorCadaAmigo :: RedSocial ->  Usuario -> [Usuario] -> [Usuario] -> Bool
 buscoPorCadaAmigo r u [] vistos = False
@@ -212,7 +213,7 @@ buscoPorCadaAmigo r u (ah:at) vistos = buscoPor r u (amigosDe r ah) (vistos ++ [
 
 listaASinB :: [Usuario] -> [Usuario] -> [Usuario]
 listaASinB [] _ = []
-listaASinB _ [] = []
+listaASinB a [] = a
 listaASinB (ah:at) b = if pertenece ah b then listaASinB at b else ([ah] ++ listaASinB at b)
 
 

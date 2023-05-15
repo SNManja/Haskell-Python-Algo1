@@ -17,8 +17,8 @@ tests = test [
     {-
         los casos que nos interesan son 3: 
          el caso en el que un usuario tiene mas de un amigo (y de paso probamos que funcione cuando el usuario esta primero en la tupla, y cuando esta segundo)
-        despues probamos el caso borde, que es cuando un usuario tiene un solo amigo
-        y luego probamos cuando un usuario no tiene ningun amigo
+         despues probamos el caso borde, que es cuando un usuario tiene un solo amigo
+         y luego probamos cuando un usuario no tiene ningun amigo
     -}
     " amigosDe Default" ~: (amigosDe redA usuario1) ~?= [usuario2, usuario4],
     " amigosDe RedVacia" ~: (amigosDe redA usuario0) ~?= [],
@@ -31,26 +31,42 @@ tests = test [
     " cantidadDeAmigos alguno" ~: (cantidadDeAmigos redA usuario1) ~?= 2,
 
 
-    --En este caso me interesa que el test me devuelva:
-    -- Un u, siendo que este para este u (todo i en [usuarios])(cantAmigos u >= cantAmigos i)
-    " usuarioConMasAmigos 1" ~: expectAny (usuarioConMasAmigos redA) [usuario2, usuario4],
+    --los casos que nos interesan en esta funcion son 4:
+    --    cuando 2 personas tienen la misma cantidad de amigos y al mismo tiempo son lo que mas amigos tienen
+    --    cuando 1 persona tiene mas amigos que el resto 
+    --    cuando ningun usuario de la red tiene amigos
+    " usuarioConMasAmigos 2MismaCantAmigos" ~: expectAny (usuarioConMasAmigos redA) [usuario2, usuario4],
+    " usuarioConMasAmigos 1ConMasAmigos" ~: (usuarioConMasAmigos redB) ~?= usuario2,
+    " usuarioConMasAmigos redSinAmigos" ~: expectAny (usuarioConMasAmigos redSinAmistades) usuariosA,
+    
 
 
-    -- Cambio el tp a 10 amigos nada mas tristemente
-    -- Los casos que vamos a testear son:
-    -- Que no haya ningun roberto carlos (todo i)(cantAmigos i < 10)-> False
-    -- Que haya un roberto carlos (existe i)(cantAmigos i >= 10)-> True
-    " NOestaRobertoCarlos" ~: (estaRobertoCarlos redA) ~?= False,
-    " estaRobertoCArlos" ~: (estaRobertoCarlos redB) ~?= True, 
+    -- los casos quenos interesan en esta funcion son 4:
+    --    cuando un usuario no tiene amigos
+    --    cuando un usuario tiene menos de 10 amigos
+    --    cuando un usuario tiene 10 amigos
+    --    cuando un usuario tiene mas de 10 amigos
+    " NOestaRobertoCarlos antisocial" ~: (estaRobertoCarlos redSinAmistades) ~?= False,
+    " NOestaRobertoCarlos " ~: (estaRobertoCarlos redA) ~?= False,
+    " estaRobertoCarlos justo (10 amigos)" ~: (estaRobertoCarlos redRobertoCarlos10) ~?= True, 
+    " estaRobertoCarlos pasado (12 amigos)" ~: (estaRobertoCarlos redRobertoCarlos12) ~?= True, 
+    
 
-    -- Me interesa testear cuando el usuario tiene o no tiene publicaciones
-    -- Cuando tiene -> [Publicaciones]
-    -- Cuando no tiene -> []
-    " publicacionesDe Con1OMasPublis" ~: (publicacionesDe redA usuario2) ~?= [publicacion2_1, publicacion2_2],
+    {-
+        en esta funcion nos interesan 3 casos: 
+        el caso borde en el que el usuario tiene solo 1 publicacion
+        el caso en el que tiene mas de 1 publicacion
+        el caso en el que no tiene publicaciones    
+    -}
+    " publicacionesDe Con1Publi" ~: (publicacionesDe redC usuarioC_1) ~?= [publicacionC_1],
+    " publicacionesDe ConMasde1Publis" ~: (publicacionesDe redA usuario2) ~?= [publicacion2_1, publicacion2_2],
     " publicacionesDe SinPublis" ~: (publicacionesDe redA usuario0) ~?= [],
 
-    -- Cuando tiene publicaciones que le gustan -> [Publicaciones]
-    -- Cuando no le gusto ninguna publicacion -> []
+    -- en esta funcion nos interesan 3 casos:
+    --    el caso borde en el que le gusta 1 sola publicacion
+    --    el caso en el que le gustan mas de 1 publicacion
+    --    el caso en el que no le gusta ninguna publicacion
+    
     " publicacionesQueLeGustanA 1oMas" ~: (publicacionesQueLeGustanA redA usuario1) ~?= [publicacion2_2, publicacion4_1],
     " publicacionesQueLeGustanA ninguna" ~: (publicacionesQueLeGustanA redA usuario0) ~?= [],
 
@@ -130,7 +146,11 @@ publicacion4_3 = (usuario4, "Just kidding, i am Mariela", [usuario1, usuario3])
 usuariosA = [usuario0, usuario1, usuario2, usuario3, usuario4]
 relacionesA = [relacion1_2, relacion1_4, relacion2_3, relacion2_4, relacion3_4]
 publicacionesA = [publicacion1_1, publicacion1_2, publicacion2_1, publicacion2_2, publicacion3_1, publicacion3_2, publicacion4_1, publicacion4_2]
+redA :: ([(Integer, String)], [((Integer, String), (Integer, String))],
+ [((Integer, String), String, [(Integer, String)])])
 redA = (usuariosA, relacionesA, publicacionesA)
+
+redA_2 = (usuariosA, relacionesA, [publicacion1_2])
 
 usuariosB = [usuario1, usuario2, usuario3, usuario5]
 relacionesB = [relacion1_2, relacion2_3]
@@ -168,3 +188,39 @@ redAmixC = (usuariosA ++ usuariosC, relacionesA ++ relacionesC, publicacionesA +
 
 
 redSinUsuarios = ([],[],[])
+redSinAmistades = (usuariosA, [], publicacionesA)
+
+usuariosD_1 = (1,"a")
+usuariosD_2 = (2,"b")
+usuariosD_3 = (3,"c")
+usuariosD_4 = (4,"d")
+usuariosD_5 = (5,"e")
+usuariosD_6 = (6,"f")
+usuariosD_7 = (7,"g")
+usuariosD_8 = (8,"h")
+usuariosD_9 = (9,"i")
+usuariosD_10 = (10,"j")
+usuariosD_11 = (11,"k")
+usuariosD_12 = (12,"l")
+usuariosD_13 = (13,"m")
+
+relacionD_1_2 =((1,"a"),(2,"b"))
+relacionD_1_3 =((1,"a"),(3,"c"))
+relacionD_1_4 =((1,"a"),(4,"d"))
+relacionD_1_5 =((1,"a"),(5,"e"))
+relacionD_1_6 =((1,"a"),(6,"f"))
+relacionD_1_7 =((1,"a"),(7,"g"))
+relacionD_1_8 =((1,"a"),(8,"h"))
+relacionD_1_9 =((1,"a"),(9,"i"))
+relacionD_1_10 =((1,"a"),(10,"j"))
+relacionD_1_11 =((1,"a"),(11,"k"))
+relacionD_1_12 =((1,"a"),(12,"l"))
+relacionD_1_13 =((1,"a"),(13,"m"))
+
+usuariosD = [usuariosD_2,usuariosD_3,usuariosD_4,usuariosD_5,usuariosD_6,usuariosD_7,usuariosD_8,usuariosD_9,usuariosD_10,usuariosD_11,usuariosD_12,usuariosD_13]
+relacionesD12 = [relacionD_1_2, relacionD_1_3, relacionD_1_4,relacionD_1_5,relacionD_1_6,relacionD_1_7,relacionD_1_8,relacionD_1_9,relacionD_1_10,relacionD_1_11,relacionD_1_12,relacionD_1_13]
+relacionesD10 = [relacionD_1_2, relacionD_1_3, relacionD_1_4,relacionD_1_5,relacionD_1_6,relacionD_1_7,relacionD_1_8,relacionD_1_9,relacionD_1_10,relacionD_1_11]
+redRobertoCarlos12 = (usuariosD,relacionesD12,[])
+redRobertoCarlos10 = (usuariosD,relacionesD10,[])
+
+

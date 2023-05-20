@@ -39,11 +39,14 @@ likesDePublicacion (_, _, us) = us
 
 {- 
     -- Ej-1 --
-    Uso para separar los usuarios de la red la funcion auxiliar
-    y asi trabajar comodamente con la lista de usuarioss 
+    En esta funcion, creamos una subfuncion que toma una lista de usuarios, agarra recursivamente el primer elemento de la lista, obtiene el segundo
+    elemento de la tupla (que es el nombre del usuario), y luego, ese ultimo elemento se concatena a una lista en la cual se van a almacenar todos los 
+    nombres de usuarios hasta que la lista de usuarios sea vacia.
+        Luego la funcion principal se encarga de obtener la lista de usuarios de la red, y obtener la lista de nombres de usuarios utilizando la funcion
+    explicada anteriormente.
 -}
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios r = nombresDeUsuariosAux (usuarios r)
+nombresDeUsuarios red = nombresDeUsuariosAux (usuarios red)
 
 nombresDeUsuariosAux :: [Usuario] -> [String]
 nombresDeUsuariosAux [] = []
@@ -52,13 +55,13 @@ nombresDeUsuariosAux (x:xs) = [nombreDeUsuario x] ++ nombresDeUsuariosAux xs
 
 {-
     -- Ej-2 --
-    AmigosDeAux separa las relaciones para trabajar mas facil con ellas
-    luego checkea uno por uno en la lista de relaciones si aparece u en uno de los dos lados de cada tupla
-    en caso de que si, almacena el usuario en la lista de Strings. En caso que no, sigue testeando relaciones una por una hasta llegar a [] (lista vacia)
-
+    La funcion principal obtiene el conjunto de relaciones de la red, y el usuario el cual queremos ver los amigos. Dicha funcion auxiliar,
+    se encarga de ver todas las relaciones dentro del conjunto de relaciones, y por cada una se fija si alguno de los dos elementos de la tupla es el 
+    usuario (el cual queremos ver sus amigos). En el caso de que alguno de estos elementos sea el usuario, entonces agrega al otro usuario a una 
+    lista en la cual se van a almacenar todos los amigos.
 -}
 amigosDe :: RedSocial -> Usuario -> [Usuario]
-amigosDe r u = amigosDeAux (relaciones r) u 
+amigosDe red u = amigosDeAux (relaciones red) u 
 
 amigosDeAux :: [Relacion] -> Usuario -> [Usuario]
 amigosDeAux [] _ = []
@@ -69,11 +72,11 @@ amigosDeAux (rh:rt) u | fst rh == u = (snd rh:amigosDeAux rt u)
 
 {-
     -- Ej-3 --
-    Da uso de cantidadDeAmigos y toma la longitud de la lista (amigosDe r u),
-    dandonos la cantidad de amigos que tiene el usuario u
+     En esta funcion, reciclamos la funcion hecha anteriormente(amigosDe), gracias a la cual, extraemos la lista de amigos del usuario a analizar, y con
+     la subfuncion llamada "logitudLista", contamos los elementos de dicha lista para obtener la cantidad de amigos.
 -}
 cantidadDeAmigos :: RedSocial -> Usuario -> Integer
-cantidadDeAmigos r u = longitudLista (amigosDe r u)
+cantidadDeAmigos red u = longitudLista (amigosDe red u)
 
 longitudLista :: [t] -> Integer
 longitudLista [] = 0
@@ -100,7 +103,7 @@ usuarioConMasAmigosAux r (lh:lt) (maxUser,maxCount) | cantidadDeAmigos r lh > ma
     Este ejercicio se resuelve simplemente con el uso de la funcion usuarioConMasAmigos recien desarrollada y viendo al cantidadDeAmigos del mismo, lo podemos comparar con el valor numerico 1000000
 -}
 estaRobertoCarlos :: RedSocial -> Bool
-estaRobertoCarlos r = cantidadDeAmigos r (usuarioConMasAmigos r) >= 10 
+estaRobertoCarlos r = (cantidadDeAmigos r (usuarioConMasAmigos r)) >= 10 
 
  
 {-

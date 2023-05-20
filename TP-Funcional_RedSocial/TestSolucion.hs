@@ -63,7 +63,7 @@ tests = test [
     " publicacionesDe SinPublis" ~: (publicacionesDe redA usuario0) ~?= [],
 
     -- en esta funcion nos interesan 3 casos:
-    --    el caso borde en el que le gusta 1 sola publicacion
+    -- !   el caso borde en el que le gusta 1 sola publicacion
     --    el caso en el que le gustan mas de 1 publicacion
     --    el caso en el que no le gusta ninguna publicacion
     
@@ -71,33 +71,33 @@ tests = test [
     " publicacionesQueLeGustanA ninguna" ~: (publicacionesQueLeGustanA redA usuario0) ~?= [],
 
 
-    -- En este caso tengo dos usuarios ademas de la red.
-    -- A ambos les gustan alguna publicacion en comun
-    -- A ninguno le gusta alguna publicacion en comun
-    -- BONUS: 
-        -- A U1 le gustan publis, a U2 no le gusta ninguna
-        -- A U2 le gustan publis, a U1 no le gsuta ninguna
+    -- es esta funcion nos interesan 5 casos:
+    -- !   el caso en el que a los dos usuarios les gustan las mismas publicaciones
+    -- !   el caso en el que a los dos usuarios les gustan publicaciones diferentes
+    -- !   el caso en el que al primero usuario les gustan publicaciones y al segundo ninguna
+    -- !   el caso en el que al segundo usuario le gustan publicaciones y al primero ninguna
+    -- !   el caso en el que al primer usuario no le gusta ninguna publicacion y al segundo tampoco
     " lesGustanLasMismasPublicaciones True" ~: (lesGustanLasMismasPublicaciones redB usuario1 usuario3) ~?= True,
     " lesGustanLasMismasPublicaciones False" ~: (lesGustanLasMismasPublicaciones redA usuario1 usuario2) ~?= False,
 
 
-    -- Usuario NO tiene un seguidor fiel
-    -- Casos principales
-     -- tiene un seguidor fiel
-     -- no lo tiene
-    -- Luego me surgen de ahi casos como:
-    -- Usuario no tiene publis -> Tiene que dar False?
+    -- en esta funcion no interesan 4 casos:
+    --    el caso en el que el usuario tenga un usuario que le de like a todas sus plublicaciones
+    --    el caso en el que el usuario tenga publicaciones con like, pero que ninguno de esos usuarios que dieron like sea un "seguidor fiel"(que le haya dado like a todas las publicaciones)
+    -- !   el caso en el que el usuario tenga publicaciones sin likes
+    --    el caso en el que el usuario no tenga publicaciones
     
     " tieneUnSeguidorFiel 1" ~: (tieneUnSeguidorFiel redA usuario1) ~?= True,
     " tieneUnSeguidorFiel 2" ~: (tieneUnSeguidorFiel redA usuario3) ~?= False,
     " tieneUnSeguidorFiel 3" ~: (tieneUnSeguidorFiel redA usuario0) ~?= False,
 
-    -- Hay una secuencia -> True
-    -- Son directamente amigos -> True
-    -- Son amigos de amigos de amigos ... -> True
-    -- Cada uno con una cadena de amistades extensa pero no chocan -> False
-    -- U1 sin amigos -> False
-    -- U2 sin amigos -> False
+    -- en esta funcion nos interesan 5 casos:
+    --    el caso en el que los 2 usuarios son amigos directos
+    --    el caso en el que si existe una red de amigos entre  los 2 usuarios
+    --    el caso en el que el primer usuario no tiene amigos y el segundo si
+    --    el caso en el que el segundo usuario no tiene amigos y el segundo si
+    --    el caso en el que no exite una red de amigos, pero que los 2 usuarios tengan amigos
+
     " existeSecuenciaDeAmigos DirectamenteAmigos" ~: (existeSecuenciaDeAmigos redC usuarioC_1 usuarioC_3) ~?= True,
     " existeSecuenciaDeAmigos SonAmigosDeAmigos..." ~: (existeSecuenciaDeAmigos redC usuarioC_1 usuarioC_2) ~?= True,
     " existeSecuenciaDeAmigos U1 sin amigos" ~: (existeSecuenciaDeAmigos redC usuarioC_5 usuarioC_1) ~?= False,
@@ -217,7 +217,7 @@ relacionD_1_11 =((1,"a"),(11,"k"))
 relacionD_1_12 =((1,"a"),(12,"l"))
 relacionD_1_13 =((1,"a"),(13,"m"))
 
-usuariosD = [usuariosD_2,usuariosD_3,usuariosD_4,usuariosD_5,usuariosD_6,usuariosD_7,usuariosD_8,usuariosD_9,usuariosD_10,usuariosD_11,usuariosD_12,usuariosD_13]
+usuariosD = [usuariosD_1,usuariosD_2,usuariosD_3,usuariosD_4,usuariosD_5,usuariosD_6,usuariosD_7,usuariosD_8,usuariosD_9,usuariosD_10,usuariosD_11,usuariosD_12,usuariosD_13]
 relacionesD12 = [relacionD_1_2, relacionD_1_3, relacionD_1_4,relacionD_1_5,relacionD_1_6,relacionD_1_7,relacionD_1_8,relacionD_1_9,relacionD_1_10,relacionD_1_11,relacionD_1_12,relacionD_1_13]
 relacionesD10 = [relacionD_1_2, relacionD_1_3, relacionD_1_4,relacionD_1_5,relacionD_1_6,relacionD_1_7,relacionD_1_8,relacionD_1_9,relacionD_1_10,relacionD_1_11]
 redRobertoCarlos12 = (usuariosD,relacionesD12,[])

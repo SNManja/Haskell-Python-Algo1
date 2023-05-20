@@ -6,6 +6,12 @@ def de1a10 ():
         x = x + 1
         
 def parEntre10y40 ():
+    def es_multiplo_de (n: int, m: int):
+        if (n / m == round(n/m,0)):
+            return True
+        else:
+            return False
+
     x: int = 10
     while x <= 40:
         if(es_multiplo_de (x, 2)):

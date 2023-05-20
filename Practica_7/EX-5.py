@@ -27,7 +27,7 @@ def devolver_el_doble_si_es_multiplo3_el_triple_si_es_multiplo9(un_numero: int):
         return un_numero
     
 def muchas_letras(nombre):
-    if(length (nombre) >= 5):
+    if(len(nombre) >= 5):
         return "Tu nombre tiene muchas letras!"
     else: 
         return "Tu nombre tiene menos de 5 caracteres"

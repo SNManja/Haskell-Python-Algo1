@@ -1,5 +1,6 @@
 import sys
 
+# Tras multiples implementaciones, termine haciendo la mas similar al enunciado
 
 def fibonacciNoRecursivo(n: int) -> int:
   fibo: list = [0,1]

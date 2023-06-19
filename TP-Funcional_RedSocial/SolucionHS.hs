@@ -227,10 +227,3 @@ pertenece t (x:xs) | x == t = True
 
 
 -- Estos son predicados de la definicion del TP no se si van a servir 
-cadenaDeAmigos :: RedSocial -> [Usuario] -> Bool
-cadenaDeAmigos r (uh:ut) | null ut  || null (uh:ut)= True
-                         | relacionadosDirecto r uh (head ut) = cadenaDeAmigos r ut
-                         | otherwise = False
-
-relacionadosDirecto :: RedSocial -> Usuario -> Usuario ->  Bool
-relacionadosDirecto r u1 u2 = pertenece u1 (amigosDe r u2)

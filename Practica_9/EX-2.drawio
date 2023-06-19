@@ -1,0 +1,55 @@
+<mxfile host="Electron" modified="2023-06-04T20:09:18.903Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="WPv59L5NaeY24x2BleYi" version="21.2.8" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="462" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="gT40QqcikksWysQnImlz-1" value="min (x:int, y:int) : int&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="330" y="90" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="gT40QqcikksWysQnImlz-2" target="gT40QqcikksWysQnImlz-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-2" value="result: int = 0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-9" value="FALSE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="gT40QqcikksWysQnImlz-3" target="gT40QqcikksWysQnImlz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-10" value="TRUE" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="gT40QqcikksWysQnImlz-3" target="gT40QqcikksWysQnImlz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-3" value="if x &amp;lt; y" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="gT40QqcikksWysQnImlz-4" target="gT40QqcikksWysQnImlz-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-4" value="result = x" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-5" value="return result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-13" value="&lt;h1&gt;Ejercicio 2&lt;/h1&gt;&lt;div&gt;Efectivamente, ejecuta todas las lineas.&lt;/div&gt;&lt;div&gt;en minA : if x &amp;lt; y da true&lt;/div&gt;&lt;div&gt;en minB: if x &amp;lt; y da false&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="560" y="90" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-14" value="&lt;h1&gt;Ejercicio 3&lt;/h1&gt;&lt;div&gt;Tambien se cumple esto. Son dos branches posibles y lo que diferencia una de otra es el&lt;/div&gt;&lt;div&gt;if statement&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="560" y="240" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-15" value="&lt;h1&gt;Ejercicio 4&lt;/h1&gt;&lt;div&gt;No, no es capaz. Falta testear el caso en que y &amp;lt; x. En este ejemplo daria erronea output el algoritmo brindado.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="560" y="360" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-16" value="&lt;h1&gt;Ejercicio 5&lt;/h1&gt;&lt;div&gt;Tenemos el caso en que x &amp;lt; y, y en el que x == y&lt;/div&gt;&lt;div&gt;&amp;nbsp;Yo agregaria y &amp;gt; x, teniendo que devolver y.&lt;/div&gt;&lt;div&gt;&amp;nbsp;Con este test podriamos ver el error del algoritmo brindado.&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="560" y="500" width="190" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="gT40QqcikksWysQnImlz-17" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;width=4;endSize=4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endWidth=4;fillColor=#fff2cc;strokeColor=#d6b656;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="gT40QqcikksWysQnImlz-1" target="gT40QqcikksWysQnImlz-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="440" as="sourcePoint" />
+            <mxPoint x="480" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
